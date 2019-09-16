@@ -1,0 +1,1 @@
+../../../AbstractRoom/Example/AbstractRoom/Classes/Protocol/AbsHttpDelegate.h

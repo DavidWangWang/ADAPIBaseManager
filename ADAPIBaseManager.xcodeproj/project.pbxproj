@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0657D7D579FBE83C4419BF6B /* libPods-ADAPIBaseManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74245AA55A24FD7224FC2E5F /* libPods-ADAPIBaseManager.a */; };
 		630832F6232F5E6400562BF2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 630832F5232F5E6400562BF2 /* AppDelegate.m */; };
 		630832F9232F5E6400562BF2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 630832F8232F5E6400562BF2 /* ViewController.m */; };
 		630832FC232F5E6400562BF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 630832FA232F5E6400562BF2 /* Main.storyboard */; };
@@ -15,6 +16,14 @@
 		63083304232F5E6500562BF2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 63083303232F5E6500562BF2 /* main.m */; };
 		6308330E232F5E6500562BF2 /* ADAPIBaseManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6308330D232F5E6500562BF2 /* ADAPIBaseManagerTests.m */; };
 		63083319232F5E6600562BF2 /* ADAPIBaseManagerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 63083318232F5E6600562BF2 /* ADAPIBaseManagerUITests.m */; };
+		6308332A232F5F2300562BF2 /* ADAPIBaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 63083329232F5F2300562BF2 /* ADAPIBaseManager.m */; };
+		6308332F232F708B00562BF2 /* ADURLResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6308332E232F708B00562BF2 /* ADURLResponse.m */; };
+		63083333232F730000562BF2 /* ADCacheCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 63083332232F730000562BF2 /* ADCacheCenter.m */; };
+		63083337232F7F4900562BF2 /* Target_CTAppContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 63083336232F7F4900562BF2 /* Target_CTAppContext.m */; };
+		6308333C232F7FB700562BF2 /* CTMediator+ADAppContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 6308333B232F7FB700562BF2 /* CTMediator+ADAppContext.m */; };
+		63083341232F8C7300562BF2 /* ADServiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 63083340232F8C7300562BF2 /* ADServiceFactory.m */; };
+		63083345232F926C00562BF2 /* NSURLRequest+ADNetworkingMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 63083344232F926C00562BF2 /* NSURLRequest+ADNetworkingMethods.m */; };
+		63083349232F965100562BF2 /* ADApiProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 63083348232F965100562BF2 /* ADApiProxy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		25F40B04A11C723E826AB222 /* Pods-ADAPIBaseManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ADAPIBaseManager.debug.xcconfig"; path = "Target Support Files/Pods-ADAPIBaseManager/Pods-ADAPIBaseManager.debug.xcconfig"; sourceTree = "<group>"; };
 		630832F1232F5E6400562BF2 /* ADAPIBaseManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ADAPIBaseManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		630832F4232F5E6400562BF2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		630832F5232F5E6400562BF2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -51,6 +61,26 @@
 		63083314232F5E6600562BF2 /* ADAPIBaseManagerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ADAPIBaseManagerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		63083318232F5E6600562BF2 /* ADAPIBaseManagerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ADAPIBaseManagerUITests.m; sourceTree = "<group>"; };
 		6308331A232F5E6600562BF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63083328232F5F2300562BF2 /* ADAPIBaseManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ADAPIBaseManager.h; sourceTree = "<group>"; };
+		63083329232F5F2300562BF2 /* ADAPIBaseManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ADAPIBaseManager.m; sourceTree = "<group>"; };
+		6308332B232F60D100562BF2 /* ADNetworkingDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ADNetworkingDefines.h; sourceTree = "<group>"; };
+		6308332D232F708B00562BF2 /* ADURLResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ADURLResponse.h; sourceTree = "<group>"; };
+		6308332E232F708B00562BF2 /* ADURLResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ADURLResponse.m; sourceTree = "<group>"; };
+		63083331232F730000562BF2 /* ADCacheCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ADCacheCenter.h; sourceTree = "<group>"; };
+		63083332232F730000562BF2 /* ADCacheCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ADCacheCenter.m; sourceTree = "<group>"; };
+		63083335232F7F4900562BF2 /* Target_CTAppContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Target_CTAppContext.h; sourceTree = "<group>"; };
+		63083336232F7F4900562BF2 /* Target_CTAppContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Target_CTAppContext.m; sourceTree = "<group>"; };
+		6308333A232F7FB700562BF2 /* CTMediator+ADAppContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CTMediator+ADAppContext.h"; sourceTree = "<group>"; };
+		6308333B232F7FB700562BF2 /* CTMediator+ADAppContext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CTMediator+ADAppContext.m"; sourceTree = "<group>"; };
+		6308333E232F8A3400562BF2 /* ADServiceProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ADServiceProtocol.h; sourceTree = "<group>"; };
+		6308333F232F8C7300562BF2 /* ADServiceFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ADServiceFactory.h; sourceTree = "<group>"; };
+		63083340232F8C7300562BF2 /* ADServiceFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ADServiceFactory.m; sourceTree = "<group>"; };
+		63083343232F926C00562BF2 /* NSURLRequest+ADNetworkingMethods.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSURLRequest+ADNetworkingMethods.h"; sourceTree = "<group>"; };
+		63083344232F926C00562BF2 /* NSURLRequest+ADNetworkingMethods.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURLRequest+ADNetworkingMethods.m"; sourceTree = "<group>"; };
+		63083347232F965100562BF2 /* ADApiProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ADApiProxy.h; sourceTree = "<group>"; };
+		63083348232F965100562BF2 /* ADApiProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ADApiProxy.m; sourceTree = "<group>"; };
+		74245AA55A24FD7224FC2E5F /* libPods-ADAPIBaseManager.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ADAPIBaseManager.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		97736AB754ACB636F3FCB003 /* Pods-ADAPIBaseManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ADAPIBaseManager.release.xcconfig"; path = "Target Support Files/Pods-ADAPIBaseManager/Pods-ADAPIBaseManager.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0657D7D579FBE83C4419BF6B /* libPods-ADAPIBaseManager.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +109,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D919311549A3DB33976BD55 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				74245AA55A24FD7224FC2E5F /* libPods-ADAPIBaseManager.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		630832E8232F5E6400562BF2 = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +124,8 @@
 				6308330C232F5E6500562BF2 /* ADAPIBaseManagerTests */,
 				63083317232F5E6600562BF2 /* ADAPIBaseManagerUITests */,
 				630832F2232F5E6400562BF2 /* Products */,
+				95328E77E9D9ADD48D98F6DB /* Pods */,
+				0D919311549A3DB33976BD55 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,6 +142,7 @@
 		630832F3232F5E6400562BF2 /* ADAPIBaseManager */ = {
 			isa = PBXGroup;
 			children = (
+				63083326232F5EE000562BF2 /* ADNetwoking */,
 				630832F4232F5E6400562BF2 /* AppDelegate.h */,
 				630832F5232F5E6400562BF2 /* AppDelegate.m */,
 				630832F7232F5E6400562BF2 /* ViewController.h */,
@@ -132,6 +174,112 @@
 			path = ADAPIBaseManagerUITests;
 			sourceTree = "<group>";
 		};
+		63083326232F5EE000562BF2 /* ADNetwoking */ = {
+			isa = PBXGroup;
+			children = (
+				6308333D232F895A00562BF2 /* Service */,
+				63083338232F7F7C00562BF2 /* Categories */,
+				63083334232F7F2F00562BF2 /* Demo */,
+				63083327232F5EF300562BF2 /* Components */,
+				6308332B232F60D100562BF2 /* ADNetworkingDefines.h */,
+			);
+			path = ADNetwoking;
+			sourceTree = "<group>";
+		};
+		63083327232F5EF300562BF2 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				63083346232F963900562BF2 /* ApiProxy */,
+				63083330232F72E400562BF2 /* Cache */,
+				6308332C232F703600562BF2 /* URLReponse */,
+				63083328232F5F2300562BF2 /* ADAPIBaseManager.h */,
+				63083329232F5F2300562BF2 /* ADAPIBaseManager.m */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		6308332C232F703600562BF2 /* URLReponse */ = {
+			isa = PBXGroup;
+			children = (
+				6308332D232F708B00562BF2 /* ADURLResponse.h */,
+				6308332E232F708B00562BF2 /* ADURLResponse.m */,
+			);
+			path = URLReponse;
+			sourceTree = "<group>";
+		};
+		63083330232F72E400562BF2 /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				63083331232F730000562BF2 /* ADCacheCenter.h */,
+				63083332232F730000562BF2 /* ADCacheCenter.m */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
+		63083334232F7F2F00562BF2 /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				63083335232F7F4900562BF2 /* Target_CTAppContext.h */,
+				63083336232F7F4900562BF2 /* Target_CTAppContext.m */,
+			);
+			path = Demo;
+			sourceTree = "<group>";
+		};
+		63083338232F7F7C00562BF2 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				63083342232F925500562BF2 /* NSURLRequest */,
+				63083339232F7FA500562BF2 /* AppContext */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		63083339232F7FA500562BF2 /* AppContext */ = {
+			isa = PBXGroup;
+			children = (
+				6308333A232F7FB700562BF2 /* CTMediator+ADAppContext.h */,
+				6308333B232F7FB700562BF2 /* CTMediator+ADAppContext.m */,
+			);
+			path = AppContext;
+			sourceTree = "<group>";
+		};
+		6308333D232F895A00562BF2 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				6308333E232F8A3400562BF2 /* ADServiceProtocol.h */,
+				6308333F232F8C7300562BF2 /* ADServiceFactory.h */,
+				63083340232F8C7300562BF2 /* ADServiceFactory.m */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		63083342232F925500562BF2 /* NSURLRequest */ = {
+			isa = PBXGroup;
+			children = (
+				63083343232F926C00562BF2 /* NSURLRequest+ADNetworkingMethods.h */,
+				63083344232F926C00562BF2 /* NSURLRequest+ADNetworkingMethods.m */,
+			);
+			path = NSURLRequest;
+			sourceTree = "<group>";
+		};
+		63083346232F963900562BF2 /* ApiProxy */ = {
+			isa = PBXGroup;
+			children = (
+				63083347232F965100562BF2 /* ADApiProxy.h */,
+				63083348232F965100562BF2 /* ADApiProxy.m */,
+			);
+			path = ApiProxy;
+			sourceTree = "<group>";
+		};
+		95328E77E9D9ADD48D98F6DB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				25F40B04A11C723E826AB222 /* Pods-ADAPIBaseManager.debug.xcconfig */,
+				97736AB754ACB636F3FCB003 /* Pods-ADAPIBaseManager.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -139,6 +287,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6308331D232F5E6600562BF2 /* Build configuration list for PBXNativeTarget "ADAPIBaseManager" */;
 			buildPhases = (
+				2A4EE73379BAD46B912CDA83 /* [CP] Check Pods Manifest.lock */,
 				630832ED232F5E6400562BF2 /* Sources */,
 				630832EE232F5E6400562BF2 /* Frameworks */,
 				630832EF232F5E6400562BF2 /* Resources */,
@@ -194,6 +343,7 @@
 		630832E9232F5E6400562BF2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = AD;
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = ADIOS;
 				TargetAttributes = {
@@ -257,14 +407,47 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2A4EE73379BAD46B912CDA83 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ADAPIBaseManager-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		630832ED232F5E6400562BF2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63083341232F8C7300562BF2 /* ADServiceFactory.m in Sources */,
+				63083333232F730000562BF2 /* ADCacheCenter.m in Sources */,
 				630832F9232F5E6400562BF2 /* ViewController.m in Sources */,
+				63083337232F7F4900562BF2 /* Target_CTAppContext.m in Sources */,
 				63083304232F5E6500562BF2 /* main.m in Sources */,
+				6308332A232F5F2300562BF2 /* ADAPIBaseManager.m in Sources */,
+				63083349232F965100562BF2 /* ADApiProxy.m in Sources */,
+				63083345232F926C00562BF2 /* NSURLRequest+ADNetworkingMethods.m in Sources */,
 				630832F6232F5E6400562BF2 /* AppDelegate.m in Sources */,
+				6308333C232F7FB700562BF2 /* CTMediator+ADAppContext.m in Sources */,
+				6308332F232F708B00562BF2 /* ADURLResponse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,6 +616,7 @@
 		};
 		6308331E232F5E6600562BF2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 25F40B04A11C723E826AB222 /* Pods-ADAPIBaseManager.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -449,6 +633,7 @@
 		};
 		6308331F232F5E6600562BF2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 97736AB754ACB636F3FCB003 /* Pods-ADAPIBaseManager.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

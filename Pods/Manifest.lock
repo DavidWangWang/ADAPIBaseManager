@@ -1,0 +1,41 @@
+PODS:
+  - AbstractRoom/BaseRoom (0.1.8):
+    - AbstractRoom/Core
+  - AbstractRoom/Core (0.1.8)
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
+    - AFNetworking/NSURLSession
+  - CTMediator (25)
+
+DEPENDENCIES:
+  - AbstractRoom/BaseRoom
+  - AFNetworking
+  - CTMediator
+
+SPEC REPOS:
+  https://git.wemomo.com/ios/Specs.git:
+    - AbstractRoom
+  https://github.com/CocoaPods/Specs.git:
+    - AFNetworking
+    - CTMediator
+
+SPEC CHECKSUMS:
+  AbstractRoom: 0685dced2220cb8353cc8bd69c556efc8809b390
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  CTMediator: 830c1fc204b3a6abf2a059510c7380f56343da0f
+
+PODFILE CHECKSUM: f73b41e71d7a24ca55499be9516a4df7763e2299
+
+COCOAPODS: 1.8.0.beta.2
