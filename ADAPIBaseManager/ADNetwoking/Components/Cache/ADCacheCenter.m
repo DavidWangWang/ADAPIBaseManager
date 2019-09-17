@@ -25,4 +25,25 @@
     return nil;
 }
 
+- (ADURLResponse *)fetchDiskCacheWithServiceIdentifier:(NSString *)serviceIdentifier methodName:(NSString *)methodName params:(NSDictionary *)params
+{
+    return nil;
+}
+
+- (void)saveMemoryCacheWithResponse:(ADURLResponse *)response
+                  serviceIdentifier:(NSString *)serviceIdentifier
+                         methodName:(NSString *)methodName
+                          cacheTime:(NSTimeInterval)time
+{
+    
+}
+
+- (void)saveDiskCacheWithResponse:(ADURLResponse *)response
+                serviceIdentifier:(NSString *)serviceIdentifier
+                       methodName:(NSString *)methodName
+                        cacheTime:(NSTimeInterval)time
+{
+    
+}
+
 @end

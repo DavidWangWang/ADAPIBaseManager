@@ -14,6 +14,7 @@
 #import "ADServiceFactory.h"
 #import "NSURLRequest+ADNetworkingMethods.h"
 #import "ADApiProxy.h"
+#import "ADCacheCenter.h"
 
 NSString * const kCTAPIBaseManagerRequestID = @"kCTAPIBaseManagerRequestID";
 
@@ -168,6 +169,19 @@ NSString * const kCTAPIBaseManagerRequestID = @"kCTAPIBaseManagerRequestID";
     
     ADAPIManagerErrorType errorType = [self.validator manager:self isCorrectWithCallbackData:response.content];
     if (errorType == ADAPIManagerErrorTypeNoError) {
+        if (self.cachePolicy != ADAPIManagerCachePolicyNoCache && response.isCache == NO) {
+            if (self.cachePolicy & ADAPIManagerCachePolicyMemory) {
+                [[ADCacheCenter sharedInstance] saveMemoryCacheWithResponse:response serviceIdentifier:self.child.serviceIdentifier methodName:self.child.methodName cacheTime:self.memoryCacheSecond];
+            }
+            if (self.cachePolicy & ADAPIManagerCachePolicyDisk) {
+                [[ADCacheCenter sharedInstance] saveDiskCacheWithResponse:response serviceIdentifier:self.child.serviceIdentifier methodName:self.child.methodName cacheTime:self.diskCacheSecond];
+            }
+        }
+        // 拦截器到了
+        if ([self.interceptor respondsToSelector:@selector(manager:didReceiveResponse:)]) {
+            [self.interceptor manager:self didReceiveResponse:response];
+        }
+        
         
     } else {
         [self failedOnCallingAPI:response errorType:errorType];
@@ -209,6 +223,16 @@ NSString * const kCTAPIBaseManagerRequestID = @"kCTAPIBaseManagerRequestID";
         _requestIdList = [[NSMutableArray alloc] init];
     }
     return _requestIdList;
+}
+
+@end
+
+@implementation ADAPIBaseManager (InnerInterceptor)
+
+// 内部持有拦截器,自身也可以成为拦截器. 装饰者模式
+- (BOOL)beforePerformSuccessWithResponse:(ADURLResponse *)response
+{
+    return YES;
 }
 
 @end

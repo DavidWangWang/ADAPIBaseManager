@@ -12,6 +12,7 @@
 #import <Foundation/Foundation.h>
 
 @class ADAPIBaseManager;
+@class ADURLResponse;
 
 typedef NS_ENUM (NSUInteger, ADAPIManagerRequestType){
     ADAPIManagerRequestTypePost,
@@ -54,6 +55,7 @@ typedef NS_ENUM (NSUInteger, ADServiceAPIEnvironment){
 
 @optional
 - (BOOL)manager:(ADAPIBaseManager *_Nonnull)manager shouldCallAPIWithParams:(NSDictionary *_Nullable)params;
+- (void)manager:(ADAPIBaseManager *_Nonnull)manager didReceiveResponse:(ADURLResponse *_Nullable)response;
 
 @end
 

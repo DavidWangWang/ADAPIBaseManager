@@ -23,6 +23,15 @@ NS_ASSUME_NONNULL_BEGIN
                                                      methodName:(NSString *)methodName
                                                          params:(NSDictionary *)params;
 
+- (void)saveMemoryCacheWithResponse:(ADURLResponse *)response
+                  serviceIdentifier:(NSString *)serviceIdentifier
+                         methodName:(NSString *)methodName
+                          cacheTime:(NSTimeInterval)time;
+- (void)saveDiskCacheWithResponse:(ADURLResponse *)response
+                serviceIdentifier:(NSString *)serviceIdentifier
+                       methodName:(NSString *)methodName
+                        cacheTime:(NSTimeInterval)time;
+
 @end
 
 NS_ASSUME_NONNULL_END

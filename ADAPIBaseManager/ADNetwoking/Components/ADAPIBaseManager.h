@@ -36,6 +36,10 @@ NS_ASSUME_NONNULL_BEGIN
 // cache
 @property (nonatomic, assign) ADAPIManagerCachePolicy cachePolicy;
 @property (nonatomic, assign) BOOL shouldIgnoreCache;  //默认NO
+@property (nonatomic, assign) NSTimeInterval memoryCacheSecond; // 默认 3 * 60
+@property (nonatomic, assign) NSTimeInterval diskCacheSecond; // 默认 3 * 60
+// response
+@property (nonatomic, strong) ADURLResponse *response;
 
 // start
 - (NSInteger)loadData;
@@ -43,13 +47,17 @@ NS_ASSUME_NONNULL_BEGIN
                         success:(void (^ _Nullable)(ADAPIBaseManager * _Nonnull apiManager))successCallback
                            fail:(void (^ _Nullable)(ADAPIBaseManager * _Nonnull apiManager))failCallback;
 
-// response
-@property (nonatomic, strong) ADURLResponse *response;
-
 
 - (BOOL)shouldCallAPIWithParams:(nullable NSDictionary *)param;
 - (void)afterCallingAPIWithParams:(NSDictionary *)params;
 
 @end
+
+@interface ADAPIBaseManager(InnerInterceptor)
+
+- (BOOL)beforePerformSuccessWithResponse:(ADURLResponse *_Nullable)response;
+
+@end
+
 
 NS_ASSUME_NONNULL_END

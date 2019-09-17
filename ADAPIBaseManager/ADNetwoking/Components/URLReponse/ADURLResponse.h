@@ -25,6 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, readonly) NSData *responseData;
 @property (nonatomic, assign, readonly) NSInteger requestId;
 
+@property (nonatomic, assign, readonly) BOOL isCache;
+
 @end
 
 NS_ASSUME_NONNULL_END
