@@ -16,6 +16,10 @@
 #import "ADApiProxy.h"
 #import "ADCacheCenter.h"
 
+NSString * const kCTUserTokenIllegalNotification = @"kCTUserTokenIllegalNotification";
+NSString * const kCTUserTokenInvalidNotification = @"kCTUserTokenInvalidNotification";
+
+NSString * const kCTUserTokenNotificationUserInfoKeyManagerToContinue = @"kCTUserTokenNotificationUserInfoKeyManagerToContinue";
 NSString * const kCTAPIBaseManagerRequestID = @"kCTAPIBaseManagerRequestID";
 
 @interface ADAPIBaseManager()
@@ -28,10 +32,38 @@ NSString * const kCTAPIBaseManagerRequestID = @"kCTAPIBaseManagerRequestID";
 
 @property (nonatomic, assign) BOOL isLoading;
 @property (nonatomic, strong, readwrite) id fetchedRawData;
+@property (nonatomic, copy, readwrite) NSString *errorMessage;
 
 @end
 
 @implementation ADAPIBaseManager
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _interceptor = nil;
+        _validator = nil;
+        _delegate = nil;
+        _paramSource = nil;
+        _fetchedRawData = nil;
+        _errorType = ADAPIManagerErrorTypeDefault;
+        _errorMessage = nil;
+        
+        _memoryCacheSecond = 3 * 60;
+        _diskCacheSecond = 3 * 60;
+        
+        if ([self conformsToProtocol:@protocol(ADAPIManager)]) {
+            self.child = (id<ADAPIManager>)self;
+        } else {
+            NSException *exception = [[NSException alloc] init];
+            @throw exception;
+        }
+    }
+    return self;
+}
+
+#pragma mark - public
 
 + (NSInteger)loadDataWithParams:(NSDictionary *)params
                         success:(void (^)(ADAPIBaseManager * _Nonnull))successCallback
@@ -55,20 +87,6 @@ NSString * const kCTAPIBaseManagerRequestID = @"kCTAPIBaseManagerRequestID";
     self.failBlock = failCallback;
     
     return [self loadDataWithParams:params];
-}
-
-- (BOOL)shouldCallAPIWithParams:(NSDictionary *)param
-{
-    if (self != self.interceptor && [self.interceptor respondsToSelector:@selector(manager:shouldCallAPIWithParams:)]) {
-        return [self.interceptor manager:self shouldCallAPIWithParams:param];
-    } else {
-       return YES;
-    }
-}
-
-- (void)afterCallingAPIWithParams:(NSDictionary *)params
-{
-    
 }
 
 - (NSInteger)loadDataWithParams:(NSDictionary *)params
@@ -114,6 +132,7 @@ NSString * const kCTAPIBaseManagerRequestID = @"kCTAPIBaseManagerRequestID";
                     } else if (response.status == ADURLResponseStatusErrorNoNetwork) {
                         errorType = ADAPIManagerErrorTypeNoNetWork;
                     }
+                    [self failedOnCallingAPI:response errorType:errorType];
                 }];
                 [self.requestIdList addObject:requestNum];
                 
@@ -132,6 +151,35 @@ NSString * const kCTAPIBaseManagerRequestID = @"kCTAPIBaseManagerRequestID";
     }
     
     return requestId;
+}
+
+- (void)cancelAllRequest
+{
+    [[ADApiProxy sharedInstance] cancelRequestWithRequestIDList:self.requestIdList];
+    [self.requestIdList removeAllObjects];
+}
+
+- (void)cancelRequestWithRequestId:(NSUInteger)requestId
+{
+    [[ADApiProxy sharedInstance] cancelRequestWithRequestID:@(requestId)];
+    [self removeRequestIdWithRequestID:requestId];
+}
+
+- (id)reformDataWithReformer:(id<ADAPIManagerDataReformer>)reformer
+{
+    id resultData = nil;
+    if ([reformer respondsToSelector:@selector(manager:reformData:)]) {
+        resultData = [reformer manager:self reformData:self.fetchedRawData];
+    } else {
+        resultData = [self.fetchedRawData mutableCopy];
+    }
+    return resultData;
+}
+
+- (void)cleanData
+{
+    self.fetchedRawData = nil;
+    self.errorType = ADAPIManagerErrorTypeDefault;
 }
 
 - (NSDictionary *)reformParams:(NSDictionary *)params
@@ -181,7 +229,17 @@ NSString * const kCTAPIBaseManagerRequestID = @"kCTAPIBaseManagerRequestID";
         if ([self.interceptor respondsToSelector:@selector(manager:didReceiveResponse:)]) {
             [self.interceptor manager:self didReceiveResponse:response];
         }
-        
+        if ([self beforePerformSuccessWithResponse:response]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if ([self.delegate respondsToSelector:@selector(managerCallAPIDidSuccess:)]) {
+                    [self.delegate managerCallAPIDidSuccess:self];
+                }
+                if (self.successBlock) {
+                    self.successBlock(self);
+                }
+            });
+        }
+        [self afterPerformSuccessWithResponse:response];
         
     } else {
         [self failedOnCallingAPI:response errorType:errorType];
@@ -190,7 +248,58 @@ NSString * const kCTAPIBaseManagerRequestID = @"kCTAPIBaseManagerRequestID";
 
 - (void)failedOnCallingAPI:(ADURLResponse *)response errorType:(ADAPIManagerErrorType)errorType
 {
+    self.isLoading = NO;
+    if (response) {
+        self.response = response;
+    }
     
+    self.errorType = errorType;
+    [self removeRequestIdWithRequestID:response.requestId];
+    
+    // user token 无效,重新登录
+    if (errorType == ADAPIManagerErrorTypeNeedLogin) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kCTUserTokenIllegalNotification object:nil userInfo:@{kCTUserTokenNotificationUserInfoKeyManagerToContinue:self}];
+        return;
+    }
+    // 可以自动处理的错误
+    // user token 过期, 重新刷新
+    if (errorType == ADAPIManagerErrorTypeNeedAccessToken) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kCTUserTokenInvalidNotification object:nil userInfo:@{kCTUserTokenNotificationUserInfoKeyManagerToContinue:self}];
+        return;
+    }
+    id<ADServiceProtocol> service = [[ADServiceFactory sharedInstance] serviceWithIdentifier:self.child.serviceIdentifier];
+    BOOL shouldContinue = [service handleCommonErrorWithResponse:response manager:self errorType:errorType];
+    // 不需要回调到业务层
+    if (shouldContinue == NO) {
+        return;
+    }
+    
+    // 常规错误
+    if (errorType == ADAPIManagerErrorTypeNoNetWork) {
+        self.errorMessage = @"无网络连接,请检查错误";
+    }
+    if (errorType == ADAPIManagerErrorTypeTimeout) {
+        self.errorMessage = @"请求超时";
+    }
+    if (errorType == ADAPIManagerErrorTypeCanceled) {
+        self.errorMessage = @"您已取消";
+    }
+    if (errorType == ADAPIManagerErrorTypeDownGrade) {
+        self.errorMessage = @"网络阻塞";
+    }
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ([self.interceptor respondsToSelector:@selector(manager:didReceiveResponse:)]) {
+            [self.interceptor manager:self didReceiveResponse:response];
+        }
+        if ([self beforePerformFailWithResponse:response]) {
+            [self.delegate managerCallAPIDidFailed:self];
+        }
+        if (self.failBlock) {
+            self.failBlock(self);
+        }
+        [self afterPerformFailWithResponse:response];
+    });
 }
 
 - (BOOL)isReachable
@@ -225,6 +334,14 @@ NSString * const kCTAPIBaseManagerRequestID = @"kCTAPIBaseManagerRequestID";
     return _requestIdList;
 }
 
+- (BOOL)isLoading
+{
+    if (self.requestIdList.count == 0) {
+        return NO;
+    }
+    return _isLoading;
+}
+
 @end
 
 @implementation ADAPIBaseManager (InnerInterceptor)
@@ -232,7 +349,52 @@ NSString * const kCTAPIBaseManagerRequestID = @"kCTAPIBaseManagerRequestID";
 // 内部持有拦截器,自身也可以成为拦截器. 装饰者模式
 - (BOOL)beforePerformSuccessWithResponse:(ADURLResponse *)response
 {
-    return YES;
+    BOOL result = YES;
+    
+    self.errorType = ADAPIManagerErrorTypeNoError;
+    if (self != self.interceptor && [self.interceptor respondsToSelector:@selector(manager:beforePerformSuccessWithResponse:)]) {
+        result = [self.interceptor manager:self beforePerformSuccessWithResponse:response];
+    }
+    return result;
+}
+
+- (void)afterPerformSuccessWithResponse:(ADURLResponse *)response
+{
+    if (self != self.interceptor && [self.interceptor respondsToSelector:@selector(manager:afterPerformSuccessWithResponse:)]) {
+        [self.interceptor manager:self afterPerformSuccessWithResponse:response];
+    }
+}
+
+- (BOOL)beforePerformFailWithResponse:(ADURLResponse *)response
+{
+    BOOL result = YES;
+    if (self != self.interceptor && [self.interceptor respondsToSelector:@selector(manager:afterPerformFailWithResponse:)]) {
+        result = [self.interceptor manager:self beforePerformFailWithResponse:response];
+    }
+    return result;
+}
+
+- (void)afterPerformFailWithResponse:(ADURLResponse *)response
+{
+    if (self != self.interceptor && [self.interceptor respondsToSelector:@selector(manager:afterPerformFailWithResponse:)]) {
+        [self.interceptor manager:self afterPerformFailWithResponse:response];
+    }
+}
+
+- (BOOL)shouldCallAPIWithParams:(NSDictionary *)param
+{
+    BOOL result = YES;
+    if (self != self.interceptor && [self.interceptor respondsToSelector:@selector(manager:shouldCallAPIWithParams:)]) {
+        result = [self.interceptor manager:self shouldCallAPIWithParams:param];
+    }
+    return result;
+}
+
+- (void)afterCallingAPIWithParams:(NSDictionary *)params
+{
+    if (self != self.interceptor && [self.interceptor respondsToSelector:@selector(manager:afterCallingAPIWithParams:)]) {
+        [self.interceptor manager:self afterCallingAPIWithParams:params];
+    }
 }
 
 @end

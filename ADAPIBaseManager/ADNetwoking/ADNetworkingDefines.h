@@ -56,6 +56,27 @@ typedef NS_ENUM (NSUInteger, ADServiceAPIEnvironment){
 @optional
 - (BOOL)manager:(ADAPIBaseManager *_Nonnull)manager shouldCallAPIWithParams:(NSDictionary *_Nullable)params;
 - (void)manager:(ADAPIBaseManager *_Nonnull)manager didReceiveResponse:(ADURLResponse *_Nullable)response;
+- (void)manager:(ADAPIBaseManager *_Nonnull)manager afterCallingAPIWithParams:(NSDictionary *_Nullable)params;
+
+- (BOOL)manager:(ADAPIBaseManager *)manager beforePerformSuccessWithResponse:(ADURLResponse *_Nullable)response;
+- (void)manager:(ADAPIBaseManager *)manager afterPerformSuccessWithResponse:(ADURLResponse *_Nullable)response;
+
+- (BOOL)manager:(ADAPIBaseManager *)manager beforePerformFailWithResponse:(ADURLResponse *_Nullable)response;
+- (void)manager:(ADAPIBaseManager *)manager afterPerformFailWithResponse:(ADURLResponse *_Nullable)response;
+
+@end
+
+@protocol ADAPIManagerCallBackDelegate <NSObject>
+
+@required
+- (void)managerCallAPIDidSuccess:(ADAPIBaseManager *_Nonnull)manager;
+- (void)managerCallAPIDidFailed:(ADAPIBaseManager *_Nonnull)manager;
+
+@end
+
+@protocol ADAPIManagerDataReformer <NSObject>
+@required
+- (nullable id)manager:(nonnull ADAPIBaseManager *)manager reformData:(nullable NSDictionary *)data;
 
 @end
 

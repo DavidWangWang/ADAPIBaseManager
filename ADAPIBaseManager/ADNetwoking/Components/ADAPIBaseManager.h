@@ -32,6 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) NSObject<ADAPIManager> *child;
 @property (nonatomic, weak) id<ADAPIManagerInterceptor> interceptor; /// < 拦截器
 @property (nonatomic, weak) id<ADAPIManagerValidator> validator;     /// < 验证器
+@property (nonatomic, weak) id<ADAPIManagerCallBackDelegate> delegate; /// < callback
 
 // cache
 @property (nonatomic, assign) ADAPIManagerCachePolicy cachePolicy;
@@ -40,22 +41,38 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSTimeInterval diskCacheSecond; // 默认 3 * 60
 // response
 @property (nonatomic, strong) ADURLResponse *response;
+@property (nonatomic, readonly) ADAPIManagerErrorType errorType;
+@property (nonatomic, copy, readonly) NSString * _Nullable errorMessage;
+
+// before loading
+@property (nonatomic, assign, readonly) BOOL isReachable;
+@property (nonatomic, assign, readonly) BOOL isLoading;
 
 // start
 - (NSInteger)loadData;
 + (NSInteger)loadDataWithParams:(NSDictionary * _Nullable)params
                         success:(void (^ _Nullable)(ADAPIBaseManager * _Nonnull apiManager))successCallback
                            fail:(void (^ _Nullable)(ADAPIBaseManager * _Nonnull apiManager))failCallback;
+// cancel
+- (void)cancelAllRequest;
+- (void)cancelRequestWithRequestId:(NSUInteger)requestId;
 
-
-- (BOOL)shouldCallAPIWithParams:(nullable NSDictionary *)param;
-- (void)afterCallingAPIWithParams:(NSDictionary *)params;
+// finish
+- (nullable id)reformDataWithReformer:(nullable id<ADAPIManagerDataReformer>)reformer;
+- (void)cleanData;
 
 @end
 
 @interface ADAPIBaseManager(InnerInterceptor)
 
 - (BOOL)beforePerformSuccessWithResponse:(ADURLResponse *_Nullable)response;
+- (void)afterPerformSuccessWithResponse:(ADURLResponse *_Nullable)response;
+
+- (BOOL)beforePerformFailWithResponse:(ADURLResponse *_Nullable)response;
+- (void)afterPerformFailWithResponse:(ADURLResponse *_Nullable)response;
+
+- (BOOL)shouldCallAPIWithParams:(nullable NSDictionary *)param;
+- (void)afterCallingAPIWithParams:(NSDictionary *)params;
 
 @end
 
