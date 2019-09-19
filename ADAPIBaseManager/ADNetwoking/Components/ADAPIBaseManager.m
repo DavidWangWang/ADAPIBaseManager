@@ -14,7 +14,6 @@
 #import "ADServiceFactory.h"
 #import "NSURLRequest+ADNetworkingMethods.h"
 #import "ADApiProxy.h"
-#import "ADCacheCenter.h"
 
 NSString * const kCTUserTokenIllegalNotification = @"kCTUserTokenIllegalNotification";
 NSString * const kCTUserTokenInvalidNotification = @"kCTUserTokenInvalidNotification";
