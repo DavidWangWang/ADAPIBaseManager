@@ -25,6 +25,11 @@
 		63083345232F926C00562BF2 /* NSURLRequest+ADNetworkingMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 63083344232F926C00562BF2 /* NSURLRequest+ADNetworkingMethods.m */; };
 		63083349232F965100562BF2 /* ADApiProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 63083348232F965100562BF2 /* ADApiProxy.m */; };
 		63BCC88423332BD300D3CA5D /* NSObject+ADNetworkingMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BCC88323332BD300D3CA5D /* NSObject+ADNetworkingMethods.m */; };
+		63BCC88923335B7F00D3CA5D /* ADMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BCC88823335B7F00D3CA5D /* ADMemoryCache.m */; };
+		63BCC88C23335CCB00D3CA5D /* ADDiskCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BCC88B23335CCB00D3CA5D /* ADDiskCache.m */; };
+		63BCC89023335F8200D3CA5D /* NSDictionary+AXNetworkingMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BCC88F23335F8200D3CA5D /* NSDictionary+AXNetworkingMethods.m */; };
+		63BCC8942333613E00D3CA5D /* NSArray+AXNetworkingMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BCC8922333613E00D3CA5D /* NSArray+AXNetworkingMethods.m */; };
+		63BCC898233364CD00D3CA5D /* ADMemoryCachedRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BCC897233364CD00D3CA5D /* ADMemoryCachedRecord.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +87,16 @@
 		63083348232F965100562BF2 /* ADApiProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ADApiProxy.m; sourceTree = "<group>"; };
 		63BCC88223332BD300D3CA5D /* NSObject+ADNetworkingMethods.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+ADNetworkingMethods.h"; sourceTree = "<group>"; };
 		63BCC88323332BD300D3CA5D /* NSObject+ADNetworkingMethods.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ADNetworkingMethods.m"; sourceTree = "<group>"; };
+		63BCC88723335B7F00D3CA5D /* ADMemoryCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ADMemoryCache.h; sourceTree = "<group>"; };
+		63BCC88823335B7F00D3CA5D /* ADMemoryCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ADMemoryCache.m; sourceTree = "<group>"; };
+		63BCC88A23335CCB00D3CA5D /* ADDiskCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ADDiskCache.h; sourceTree = "<group>"; };
+		63BCC88B23335CCB00D3CA5D /* ADDiskCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ADDiskCache.m; sourceTree = "<group>"; };
+		63BCC88E23335F8200D3CA5D /* NSDictionary+AXNetworkingMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+AXNetworkingMethods.h"; sourceTree = "<group>"; };
+		63BCC88F23335F8200D3CA5D /* NSDictionary+AXNetworkingMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+AXNetworkingMethods.m"; sourceTree = "<group>"; };
+		63BCC8922333613E00D3CA5D /* NSArray+AXNetworkingMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+AXNetworkingMethods.m"; sourceTree = "<group>"; };
+		63BCC8932333613E00D3CA5D /* NSArray+AXNetworkingMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+AXNetworkingMethods.h"; sourceTree = "<group>"; };
+		63BCC896233364CD00D3CA5D /* ADMemoryCachedRecord.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ADMemoryCachedRecord.h; sourceTree = "<group>"; };
+		63BCC897233364CD00D3CA5D /* ADMemoryCachedRecord.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ADMemoryCachedRecord.m; sourceTree = "<group>"; };
 		74245AA55A24FD7224FC2E5F /* libPods-ADAPIBaseManager.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ADAPIBaseManager.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		97736AB754ACB636F3FCB003 /* Pods-ADAPIBaseManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ADAPIBaseManager.release.xcconfig"; path = "Target Support Files/Pods-ADAPIBaseManager/Pods-ADAPIBaseManager.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -213,6 +228,8 @@
 		63083330232F72E400562BF2 /* Cache */ = {
 			isa = PBXGroup;
 			children = (
+				63BCC88523335A8000D3CA5D /* DiskCache */,
+				63BCC88623335A8000D3CA5D /* MemoryCache */,
 				63083331232F730000562BF2 /* ADCacheCenter.h */,
 				63083332232F730000562BF2 /* ADCacheCenter.m */,
 			);
@@ -231,6 +248,8 @@
 		63083338232F7F7C00562BF2 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				63BCC8912333612C00D3CA5D /* Array */,
+				63BCC88D23335F7900D3CA5D /* Dictionary */,
 				63BCC88123332B8300D3CA5D /* NSObject */,
 				63083342232F925500562BF2 /* NSURLRequest */,
 				63083339232F7FA500562BF2 /* AppContext */,
@@ -282,6 +301,52 @@
 				63BCC88323332BD300D3CA5D /* NSObject+ADNetworkingMethods.m */,
 			);
 			path = NSObject;
+			sourceTree = "<group>";
+		};
+		63BCC88523335A8000D3CA5D /* DiskCache */ = {
+			isa = PBXGroup;
+			children = (
+				63BCC88A23335CCB00D3CA5D /* ADDiskCache.h */,
+				63BCC88B23335CCB00D3CA5D /* ADDiskCache.m */,
+			);
+			path = DiskCache;
+			sourceTree = "<group>";
+		};
+		63BCC88623335A8000D3CA5D /* MemoryCache */ = {
+			isa = PBXGroup;
+			children = (
+				63BCC8952333649900D3CA5D /* CacheRecord */,
+				63BCC88723335B7F00D3CA5D /* ADMemoryCache.h */,
+				63BCC88823335B7F00D3CA5D /* ADMemoryCache.m */,
+			);
+			path = MemoryCache;
+			sourceTree = "<group>";
+		};
+		63BCC88D23335F7900D3CA5D /* Dictionary */ = {
+			isa = PBXGroup;
+			children = (
+				63BCC88E23335F8200D3CA5D /* NSDictionary+AXNetworkingMethods.h */,
+				63BCC88F23335F8200D3CA5D /* NSDictionary+AXNetworkingMethods.m */,
+			);
+			path = Dictionary;
+			sourceTree = "<group>";
+		};
+		63BCC8912333612C00D3CA5D /* Array */ = {
+			isa = PBXGroup;
+			children = (
+				63BCC8932333613E00D3CA5D /* NSArray+AXNetworkingMethods.h */,
+				63BCC8922333613E00D3CA5D /* NSArray+AXNetworkingMethods.m */,
+			);
+			path = Array;
+			sourceTree = "<group>";
+		};
+		63BCC8952333649900D3CA5D /* CacheRecord */ = {
+			isa = PBXGroup;
+			children = (
+				63BCC896233364CD00D3CA5D /* ADMemoryCachedRecord.h */,
+				63BCC897233364CD00D3CA5D /* ADMemoryCachedRecord.m */,
+			);
+			path = CacheRecord;
 			sourceTree = "<group>";
 		};
 		95328E77E9D9ADD48D98F6DB /* Pods */ = {
@@ -452,13 +517,18 @@
 			files = (
 				63083341232F8C7300562BF2 /* ADServiceFactory.m in Sources */,
 				63BCC88423332BD300D3CA5D /* NSObject+ADNetworkingMethods.m in Sources */,
+				63BCC88923335B7F00D3CA5D /* ADMemoryCache.m in Sources */,
 				63083333232F730000562BF2 /* ADCacheCenter.m in Sources */,
 				630832F9232F5E6400562BF2 /* ViewController.m in Sources */,
 				63083337232F7F4900562BF2 /* Target_CTAppContext.m in Sources */,
 				63083304232F5E6500562BF2 /* main.m in Sources */,
+				63BCC898233364CD00D3CA5D /* ADMemoryCachedRecord.m in Sources */,
 				6308332A232F5F2300562BF2 /* ADAPIBaseManager.m in Sources */,
+				63BCC8942333613E00D3CA5D /* NSArray+AXNetworkingMethods.m in Sources */,
 				63083349232F965100562BF2 /* ADApiProxy.m in Sources */,
 				63083345232F926C00562BF2 /* NSURLRequest+ADNetworkingMethods.m in Sources */,
+				63BCC88C23335CCB00D3CA5D /* ADDiskCache.m in Sources */,
+				63BCC89023335F8200D3CA5D /* NSDictionary+AXNetworkingMethods.m in Sources */,
 				630832F6232F5E6400562BF2 /* AppDelegate.m in Sources */,
 				6308333C232F7FB700562BF2 /* CTMediator+ADAppContext.m in Sources */,
 				6308332F232F708B00562BF2 /* ADURLResponse.m in Sources */,

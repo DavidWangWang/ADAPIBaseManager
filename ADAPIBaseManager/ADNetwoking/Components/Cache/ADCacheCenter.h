@@ -32,6 +32,10 @@ NS_ASSUME_NONNULL_BEGIN
                        methodName:(NSString *)methodName
                         cacheTime:(NSTimeInterval)time;
 
+- (void)cleanCache;
+- (void)cleanAllMemoryCache;
+- (void)cleanAllDiskCache;
+
 @end
 
 NS_ASSUME_NONNULL_END
