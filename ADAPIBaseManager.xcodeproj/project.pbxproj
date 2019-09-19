@@ -24,6 +24,7 @@
 		63083341232F8C7300562BF2 /* ADServiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 63083340232F8C7300562BF2 /* ADServiceFactory.m */; };
 		63083345232F926C00562BF2 /* NSURLRequest+ADNetworkingMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 63083344232F926C00562BF2 /* NSURLRequest+ADNetworkingMethods.m */; };
 		63083349232F965100562BF2 /* ADApiProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 63083348232F965100562BF2 /* ADApiProxy.m */; };
+		63BCC88423332BD300D3CA5D /* NSObject+ADNetworkingMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BCC88323332BD300D3CA5D /* NSObject+ADNetworkingMethods.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,8 @@
 		63083344232F926C00562BF2 /* NSURLRequest+ADNetworkingMethods.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURLRequest+ADNetworkingMethods.m"; sourceTree = "<group>"; };
 		63083347232F965100562BF2 /* ADApiProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ADApiProxy.h; sourceTree = "<group>"; };
 		63083348232F965100562BF2 /* ADApiProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ADApiProxy.m; sourceTree = "<group>"; };
+		63BCC88223332BD300D3CA5D /* NSObject+ADNetworkingMethods.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+ADNetworkingMethods.h"; sourceTree = "<group>"; };
+		63BCC88323332BD300D3CA5D /* NSObject+ADNetworkingMethods.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ADNetworkingMethods.m"; sourceTree = "<group>"; };
 		74245AA55A24FD7224FC2E5F /* libPods-ADAPIBaseManager.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ADAPIBaseManager.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		97736AB754ACB636F3FCB003 /* Pods-ADAPIBaseManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ADAPIBaseManager.release.xcconfig"; path = "Target Support Files/Pods-ADAPIBaseManager/Pods-ADAPIBaseManager.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -228,6 +231,7 @@
 		63083338232F7F7C00562BF2 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				63BCC88123332B8300D3CA5D /* NSObject */,
 				63083342232F925500562BF2 /* NSURLRequest */,
 				63083339232F7FA500562BF2 /* AppContext */,
 			);
@@ -269,6 +273,15 @@
 				63083348232F965100562BF2 /* ADApiProxy.m */,
 			);
 			path = ApiProxy;
+			sourceTree = "<group>";
+		};
+		63BCC88123332B8300D3CA5D /* NSObject */ = {
+			isa = PBXGroup;
+			children = (
+				63BCC88223332BD300D3CA5D /* NSObject+ADNetworkingMethods.h */,
+				63BCC88323332BD300D3CA5D /* NSObject+ADNetworkingMethods.m */,
+			);
+			path = NSObject;
 			sourceTree = "<group>";
 		};
 		95328E77E9D9ADD48D98F6DB /* Pods */ = {
@@ -438,6 +451,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63083341232F8C7300562BF2 /* ADServiceFactory.m in Sources */,
+				63BCC88423332BD300D3CA5D /* NSObject+ADNetworkingMethods.m in Sources */,
 				63083333232F730000562BF2 /* ADCacheCenter.m in Sources */,
 				630832F9232F5E6400562BF2 /* ViewController.m in Sources */,
 				63083337232F7F4900562BF2 /* Target_CTAppContext.m in Sources */,

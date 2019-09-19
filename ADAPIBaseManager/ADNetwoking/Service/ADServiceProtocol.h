@@ -21,7 +21,10 @@
 - (NSURLRequest *)requestWithParams:(NSDictionary *)params
                          methodName:(NSString *)methodName
                         requestType:(ADAPIManagerRequestType)requestType;
-
+- (NSDictionary *)resultWithResponseObject:(id)responseObject
+                                  response:(NSURLResponse *)response
+                                   request:(NSURLRequest *)request
+                                     error:(NSError **)error;
 
 /*
  检查错误,如果需要回调业务层,则返回YES(例如网络错误,需要业务层弹框)
@@ -30,6 +33,9 @@
 - (BOOL)handleCommonErrorWithResponse:(ADURLResponse *)response
                               manager:(ADAPIBaseManager *)manager
                             errorType:(ADAPIManagerErrorType)errorType;
+
+@optional
+- (AFHTTPSessionManager *)sessionManager;
 
 @end
 

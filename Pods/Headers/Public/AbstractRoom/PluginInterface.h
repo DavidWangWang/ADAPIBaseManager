@@ -1,1 +1,0 @@
-../../../AbstractRoom/Example/AbstractRoom/Classes/Protocol/PluginInterface.h

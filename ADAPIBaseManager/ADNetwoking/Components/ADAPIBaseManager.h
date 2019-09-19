@@ -23,6 +23,11 @@
 - (NSUInteger)loadDataWithParams:(nullable NSDictionary *)params;
 @end
 
+extern NSString * const kCTUserTokenIllegalNotification;
+extern NSString * const kCTUserTokenInvalidNotification;
+
+extern NSString * const kCTUserTokenNotificationUserInfoKeyManagerToContinue;
+extern NSString * const kCTAPIBaseManagerRequestID;
 
 NS_ASSUME_NONNULL_BEGIN
 
